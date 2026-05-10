@@ -1,0 +1,9 @@
+{
+    "dataset": "Telco",
+    "loss_function": "Focal Loss",
+    "accuracy": 0.7860696517412935,
+    "precision": 0.5835240274599542,
+    "recall": 0.6818181818181818,
+    "f1_score": 0.6288532675709001,
+    "auc": 0.8335567968276811
+}

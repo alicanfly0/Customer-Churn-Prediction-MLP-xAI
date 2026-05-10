@@ -1,0 +1,9 @@
+{
+    "dataset": "Bank",
+    "loss_function": "BCE + SMOTE",
+    "accuracy": 0.8545,
+    "precision": 0.6647727272727273,
+    "recall": 0.5749385749385749,
+    "f1_score": 0.616600790513834,
+    "auc": 0.8483198144215093
+}

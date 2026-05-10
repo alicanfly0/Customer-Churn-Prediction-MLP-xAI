@@ -1,0 +1,10 @@
+__pycache__/
+.ipynb_checkpoints/
+*.pth
+*.png
+!results/*.png
+!checkpoints/*.pth
+!notebooks/results-notebook/*.png
+!notebooks/results-notebook/*.pth
+scratch/
+.gemini/

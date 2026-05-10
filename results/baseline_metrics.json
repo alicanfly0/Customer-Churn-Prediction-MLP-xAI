@@ -1,9 +1,9 @@
 {
-"dataset": "Telco",
-"loss_function": "BCE + SMOTE",
-"accuracy": 0.7733,
-"precision": 0.5591,
-"recall": 0.6952,
-"f1_score": 0.6198,
-"auc": 0.8287
+    "dataset": "Telco",
+    "loss_function": "BCE + SMOTE",
+    "accuracy": 0.7405828002842928,
+    "precision": 0.5079928952042628,
+    "recall": 0.7647058823529411,
+    "f1_score": 0.6104589114194237,
+    "auc": 0.8224086431193087
 }

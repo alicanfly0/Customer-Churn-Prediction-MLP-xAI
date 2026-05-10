@@ -62,7 +62,7 @@ def find_optimal_threshold(targets, probs):
 # ==========================================
 # 3. UNIFIED EXPERIMENT RUNNER
 # ==========================================
-def run_experiment(dataset_name='telco', loss_type='bce', use_smote=True):
+def run_experiment(dataset_name='telco', loss_type='bce', use_smote=True, json_filename=None):
     print(f"\n{'='*60}")
     print(f"RUNNING EXPERIMENT: Dataset={dataset_name.upper()} | Loss={loss_type.upper()} | SMOTE={use_smote}")
     print(f"{'='*60}")
@@ -185,18 +185,35 @@ def run_experiment(dataset_name='telco', loss_type='bce', use_smote=True):
     print(f"F1-Score:  {f1:.4f}")
     print(f"AUC:       {auc:.4f}\n")
 
+    if json_filename:
+        import json
+        import os
+        os.makedirs('results', exist_ok=True)
+        metrics_dict = {
+            "dataset": dataset_name.capitalize(),
+            "loss_function": "BCE + SMOTE" if loss_type == 'bce' else "Focal Loss",
+            "accuracy": float(acc),
+            "precision": float(prec),
+            "recall": float(rec),
+            "f1_score": float(f1),
+            "auc": float(auc)
+        }
+        with open(f'results/{json_filename}', 'w') as f:
+            json.dump(metrics_dict, f, indent=4)
+        print(f"Saved metrics to results/{json_filename}\n")
+
 # ==========================================
 # 4. EXECUTE THE 2x2 MATRIX
 # ==========================================
 if __name__ == "__main__":
     # Experiment 1: Telco Baseline (Assignment 2 Replication)
-    run_experiment(dataset_name='telco', loss_type='bce', use_smote=True)
+    run_experiment(dataset_name='telco', loss_type='bce', use_smote=True, json_filename='baseline_metrics.json')
     
     # Experiment 2: Telco Proposed (Focal Loss)
-    run_experiment(dataset_name='telco', loss_type='focal', use_smote=False)
+    run_experiment(dataset_name='telco', loss_type='focal', use_smote=False, json_filename='telco_improved_metrics.json')
     
     # Experiment 3: Bank Baseline (Cross-Domain)
-    run_experiment(dataset_name='bank', loss_type='bce', use_smote=True)
+    run_experiment(dataset_name='bank', loss_type='bce', use_smote=True, json_filename='bank_baseline_metrics.json')
     
     # Experiment 4: Bank Proposed (Cross-Domain Focal Loss)
-    run_experiment(dataset_name='bank', loss_type='focal', use_smote=False)
+    run_experiment(dataset_name='bank', loss_type='focal', use_smote=False, json_filename='improved_metrics.json')
